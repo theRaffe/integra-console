@@ -1,0 +1,36 @@
+### JetBrains ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# User-specific stuff:
+integra.console-backend/.idea/workspace.xml
+integra.console-backend/.idea/tasks.xml
+integra.console-backend/.idea/dictionaries
+integra.console-backend/.idea/vcs.xml
+integra.console-backend/.idea/jsLibraryMappings.xml
+
+# Sensitive or high-churn files:
+integra.console-backend/.idea/dataSources.ids
+integra.console-backend/.idea/dataSources.xml
+integra.console-backend/.idea/dataSources.local.xml
+integra.console-backend/.idea/sqlDataSources.xml
+integra.console-backend/.idea/dynamic.xml
+integra.console-backend/.idea/uiDesigner.xml
+
+# Gradle:
+integra.console-backend/.idea/gradle.xml
+integra.console-backend/.idea/libraries
+
+# Mongo Explorer plugin:
+integra.console-backend/.idea/mongoSettings.xml
+
+## File-based project format:
+integra.console-backend/*.iws
+
+## Plugin-specific files:
+
+# IntelliJ
+integra.console-backend/out/
+integra.console-backend/log
+integra.console-backend/*.log
+integra.console-backend/IntegraConsole/target/**
