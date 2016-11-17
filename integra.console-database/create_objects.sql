@@ -34,6 +34,7 @@ CREATE TABLE CONSOLE_CAT_MENU_ITEM (
 CREATE TABLE CONSOLE_PROFILE_MENU (
     PROFILE_ID NUMBER(3) NOT NULL,
     MENU_PARENT_ID NUMBER(3) NULL,
+    ORDER_ID NUMBER(3) NOT NULL,
     MENU_ID NUMBER(3) NOT NULL,
     USER_UPDATE VARCHAR2(50 BYTE),
     CREATION_DATE TIMESTAMP (6), 
@@ -52,13 +53,12 @@ insert into CONSOLE_CAT_MENU_ITEM select 4, 'pantalla-2-1', 'action 2-1', sysdat
 insert into CONSOLE_CAT_MENU_ITEM select 5, 'pantalla-2-2', null, sysdate, 'initial' from dual;
 insert into CONSOLE_CAT_MENU_ITEM select 6, 'pantalla-2-2-1', 'action-2-2-1', sysdate, 'initial' from dual;
 
-insert into CONSOLE_PROFILE_MENU select 1, null, 1, 'initial',sysdate, sysdate from dual;
-insert into CONSOLE_PROFILE_MENU select 1, 1, 2, 'initial',sysdate, sysdate from dual;
-insert into CONSOLE_PROFILE_MENU select 1, null, 3, 'initial',sysdate, sysdate from dual;
-insert into CONSOLE_PROFILE_MENU select 1, 3, 4, 'initial',sysdate, sysdate from dual;
-insert into CONSOLE_PROFILE_MENU select 1, 3, 5, 'initial',sysdate, sysdate from dual;
-insert into CONSOLE_PROFILE_MENU select 1, 5, 6, 'initial',sysdate, sysdate from dual;
-
+insert into CONSOLE_PROFILE_MENU select 1, null, 1, 1, 'initial',sysdate, sysdate from dual;
+insert into CONSOLE_PROFILE_MENU select 1, 1, 1, 2, 'initial',sysdate, sysdate from dual;
+insert into CONSOLE_PROFILE_MENU select 1, null, 2, 3, 'initial',sysdate, sysdate from dual;
+insert into CONSOLE_PROFILE_MENU select 1, 3, 2, 4, 'initial',sysdate, sysdate from dual;
+insert into CONSOLE_PROFILE_MENU select 1, 3, 1, 5, 'initial',sysdate, sysdate from dual;
+insert into CONSOLE_PROFILE_MENU select 1, 5, 1, 6, 'initial',sysdate, sysdate from dual;
 
 GRANT SELECT,UPDATE, INSERT, DELETE ON "CONSOLE_CAT_PROFILE" TO "INTFMW_USR";
 GRANT SELECT,UPDATE, INSERT, DELETE ON "CONSOLE_CAT_USER" TO "INTFMW_USR";
