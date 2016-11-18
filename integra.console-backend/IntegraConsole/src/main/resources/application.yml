@@ -1,0 +1,28 @@
+# config context path to "/" by setting an empty string
+server:
+  contextPath:
+
+# JACKSON
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+
+route:
+    authentication:
+      path: auth
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+auth:
+  endpoint: http://172.21.21.21:11006/izzi-ldap-auth/auth
+#logging:
+#  level:
+#    org.springframework:
+#      security: DEBUG
