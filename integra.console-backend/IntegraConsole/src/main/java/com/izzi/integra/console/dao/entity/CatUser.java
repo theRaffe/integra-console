@@ -13,17 +13,18 @@ public class CatUser {
 
     @Id
     @Column(name = "USER_ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-    @SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CONSOLE_SEQ_USER")
+    @SequenceGenerator(name = "CONSOLE_SEQ_USER", sequenceName = "CONSOLE_SEQ_USER", allocationSize = 1)
     private Long id;
 
     @Column(name = "USERNAME", length = 50)
     @NotNull
     private String username;
 
-    @Column(name = "PROFILE_ID")
+    /*@Column(name = "PROFILE_ID")
     @NotNull
     private Long profileId;
+    */
 
     @Column(name = "CREATION_DATE")
     @Temporal(TemporalType.TIMESTAMP)
@@ -38,6 +39,10 @@ public class CatUser {
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
     private Date lastUpdate;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PROFILE_ID")
+    private CatProfile profile;
 
     public Long getId() {
         return id;
@@ -55,13 +60,14 @@ public class CatUser {
         this.username = username;
     }
 
-    public Long getProfileId() {
+    /*public Long getProfileId() {
         return profileId;
     }
 
     public void setProfileId(Long profileId) {
         this.profileId = profileId;
     }
+    */
 
     public Date getCreationDate() {
         return creationDate;
@@ -85,5 +91,13 @@ public class CatUser {
 
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    public CatProfile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(CatProfile profile) {
+        this.profile = profile;
     }
 }

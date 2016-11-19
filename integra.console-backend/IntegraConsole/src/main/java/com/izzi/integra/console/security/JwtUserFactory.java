@@ -19,7 +19,7 @@ public final class JwtUserFactory {
                 "getFirstname",
                 "getLastname",
                 "getEmail",
-                mapToGrantedAuthorities("ROLE_ADMIN"),
+                mapToGrantedAuthorities(user.getProfile().getProfileName()),
                 true
         );
     }
