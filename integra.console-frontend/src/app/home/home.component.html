@@ -1,0 +1,27 @@
+
+<div class="row">
+    <div class="col-sm-5 col-md-12">
+        <button #btn type="button" pButton icon="fa fa-list" class="btn btn-primary"  (click)="toggleMenu()"></button>
+    </div>
+</div>
+<div class="col-md-6 col-md-offset-3">
+    <h1>Home</h1>
+    <p>You're logged in with JWT!!</p>
+    
+    <app-menu [@slideInOut]="menuState"></app-menu>
+    <!--div>        
+        
+        <p-overlayPanel #op1>
+            <p-panelMenu [model]="items" [style]="{'width':'300px'}"></p-panelMenu>
+        </p-overlayPanel>
+        
+        
+    </div-->
+    <div>
+        Users from secure api end point:
+        <ul>
+            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+        </ul>
+    </div>
+    <p><a [routerLink]="['/login']">Logout</a></p>
+</div>
