@@ -1,0 +1,33 @@
+:host {
+  background: #1a2580;
+  color: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  /*bottom: 0;*/
+  width: 0;
+  /*min-width: 250px;*/
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  height: 100%; /* 100% Full-height */
+
+}
+
+ul {
+  font-size: 18px;
+  line-height: 3;
+  font-weight: 400;
+  padding-top: 50px;
+  list-style: none;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}

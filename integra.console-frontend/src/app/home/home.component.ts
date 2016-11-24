@@ -7,8 +7,9 @@ import {PanelMenuModule,MenuItem} from 'primeng/primeng';
 
 @Component({
     templateUrl: 'home.component.html',
+    styleUrls: ['home.component.css'],
     animations: [
-    trigger('slideInOut', [
+    /*trigger('slideInOut', [
       state('in', style({
         transform: 'translate3d(0, 0, 0)'
       })),
@@ -18,6 +19,28 @@ import {PanelMenuModule,MenuItem} from 'primeng/primeng';
       transition('in => out', animate('400ms ease-in-out')),
       transition('out => in', animate('400ms ease-in-out'))
     ]),
+    */
+
+    trigger('slideInOut', [
+      state('in', style({
+        width: "250px"
+      })),
+      state('out', style({
+        width: "0"
+      })),
+      transition('in => out', animate('400ms ease-in-out')),
+      transition('out => in', animate('400ms ease-in-out'))
+    ]),
+    trigger('contentInOut', [
+      state('in', style({
+        marginLeft : "250px"
+      })),
+      state('out', style({
+        marginLeft : "0"
+      })),
+      transition('in => out', animate('400ms ease-in-out')),
+      transition('out => in', animate('400ms ease-in-out'))
+    ])
   ]
 })
  
