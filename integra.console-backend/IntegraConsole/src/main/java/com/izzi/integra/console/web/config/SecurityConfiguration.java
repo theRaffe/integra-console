@@ -50,7 +50,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					"/favicon.ico",
 					"/**/*.html",
 					"/**/*.css",
-					"/**/*.js"
+					"/**/*.js",
+					"/**/*.png",
+					"/**/*.ttf",
+					"/**/*.woff",
+					"/**/*.woff2",
+					"/**/*.eot",
+					"/**/*.svg"
 				).permitAll()
 				.antMatchers("/auth").permitAll()
 				.antMatchers("/api/users/login").permitAll()    // Permit access for all to login REST service

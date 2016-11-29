@@ -1,8 +1,8 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import {PathLocationStrategy, LocationStrategy} from '@angular/common';
+import { HttpModule, RequestOptions } from '@angular/http';
+import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { PanelMenuModule } from 'primeng/primeng';
 import {SlideMenuModule} from 'primeng/primeng';
@@ -11,7 +11,7 @@ import { OverlayPanelModule } from 'primeng/primeng';
 
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers/index';
+//import { fakeBackendProvider } from './_helpers/index';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
  
@@ -48,8 +48,8 @@ import { MenuComponent } from './_menu/menu.component';
         AuthenticationService,
         UserService,
         // providers used to create fake backend
-        fakeBackendProvider,
-        MockBackend,
+        //fakeBackendProvider,
+        //MockBackend,
         BaseRequestOptions,
         {provide: LocationStrategy, useClass: PathLocationStrategy}
     ],  

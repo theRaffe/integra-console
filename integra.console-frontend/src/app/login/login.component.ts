@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     
     login() {
         this.loading = true;
+        console.log("do authentication");
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe( result => {
                 if (result === true) {
@@ -33,7 +34,14 @@ export class LoginComponent implements OnInit {
                     this.error = 'Username or password is incorrect';
                     this.loading = false;
                 }
-            });
+            },            
+            error => {
+                //console.error('onError: %s', <any>error);
+                this.error = <any>error;
+                this.loading = false;
+            }
+            
+            );
     
     }
 
