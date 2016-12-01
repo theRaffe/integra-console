@@ -4,7 +4,7 @@
 
 const webpack = require('webpack');
 const helpers = require('./helpers');
-
+var version = require("../package.json").version;
 /*
  * Webpack Plugins
  */
@@ -25,9 +25,10 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
  */
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
-  title: 'Integra Console by Izzi',
+  title: 'Integra-Console by Izzi',
   baseUrl: '/izzi-integra-console/',
-  isDevServer: helpers.isWebpackDevServer()
+  isDevServer: helpers.isWebpackDevServer(),
+  version: version
 };
 
 /*
@@ -224,7 +225,8 @@ module.exports = function (options) {
         title: METADATA.title,
         chunksSortMode: 'dependency',
         metadata: METADATA,
-        inject: 'head'
+        inject: 'head',
+        version: METADATA.version
       }),
 
       /*

@@ -18,6 +18,7 @@ module.exports = {
     /** <link> tags for css **/
     { rel: 'stylesheet', type: 'text/css', href: '/assets/icons/css/font-awesome.min.css' },
     { rel: 'stylesheet', type: 'text/css', href: '/assets/primeng/themes/omega/theme.css' },
+    { rel: 'stylesheet', type: 'text/css', href: '/assets/login/style.css' },
     { rel: 'stylesheet', type: 'text/css', href: '/assets/primeng/primeng.min.css' },
 
     /** <link> tags for favicons **/
@@ -26,7 +27,7 @@ module.exports = {
     { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/assets/icon/favicon-16x16.png' },
 
     /** <link> tags for a Web App Manifest **/
-    { rel: 'manifest', href: '/assets/manifest.json' }
+    //{ rel: 'manifest', href: '/assets/manifest.json' }
   ],
   meta: [
     { name: 'msapplication-TileColor', content: '#00bcd4' },

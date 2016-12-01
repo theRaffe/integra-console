@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Message } from 'primeng/primeng';
 
 import { AuthenticationService } from '../_services/index';
 
@@ -11,6 +12,8 @@ export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
     error = '';
+    appVersionNumber = APP_VERSION;
+    msgs: Message[] = [];
     
     constructor(
         private router: Router,
@@ -39,6 +42,8 @@ export class LoginComponent implements OnInit {
                 //console.error('onError: %s', <any>error);
                 this.error = <any>error;
                 this.loading = false;
+                this.msgs = [];
+                this.msgs.push({severity:'error', summary:'Error Login', detail: error});
             }
             
             );

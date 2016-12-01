@@ -1,7 +1,7 @@
 {
-  "name": "angular2-webpack-starter",
-  "version": "5.1.1",
-  "description": "An Angular 2 Webpack Starter kit featuring Angular 2 (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack by AngularClass",
+  "name": "integra-console",
+  "version": "1.0.1",
+  "description": "Integra Console application, it's a resource monitoring",
   "keywords": [
     "angular2",
     "webpack",
@@ -77,6 +77,7 @@
     "ie-shim": "^0.1.0",
     "primeng": "^1.0.0-rc.4",
     "rxjs": "5.0.0-beta.12",
+    "tslint": "^4.0.2",
     "zone.js": "~0.6.26"
   },
   "devDependencies": {
@@ -128,7 +129,7 @@
     "url-loader": "^0.5.7",
     "v8-lazy-parse-webpack-plugin": "^0.3.0",
     "webpack": "2.1.0-beta.27",
-    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-middleware": "1.6.1",
     "webpack-dev-server": "2.1.0-beta.11",
     "webpack-md5-hash": "^0.0.5",
     "webpack-merge": "~0.17.0"

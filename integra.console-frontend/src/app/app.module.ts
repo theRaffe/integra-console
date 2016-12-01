@@ -5,9 +5,10 @@ import { HttpModule, RequestOptions } from '@angular/http';
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { PanelMenuModule } from 'primeng/primeng';
-import {SlideMenuModule} from 'primeng/primeng';
-import {ButtonModule} from 'primeng/primeng';
+import { SlideMenuModule } from 'primeng/primeng';
+import { ButtonModule } from 'primeng/primeng';
 import { OverlayPanelModule } from 'primeng/primeng';
+import { GrowlModule } from 'primeng/primeng';
 
 
 // used to create fake backend
@@ -34,7 +35,8 @@ import { MenuComponent } from './_menu/menu.component';
         PanelMenuModule,
         OverlayPanelModule,
         SlideMenuModule,
-        ButtonModule
+        ButtonModule,
+        GrowlModule
     ],
     declarations: [
         AppComponent,
