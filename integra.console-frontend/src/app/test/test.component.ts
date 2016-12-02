@@ -10,7 +10,7 @@ export class TestDemo {
     private items: MenuItem[];
 
     ngOnInit() {
-        this.items = [
+        /*this.items = [
             {
                 label: 'File',
                 icon: 'fa-file-o',
@@ -83,6 +83,6 @@ export class TestDemo {
             {
                 label: 'Quit', icon: 'fa-minus'
             }
-        ];
+        ];*/
     }
 }

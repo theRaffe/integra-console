@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(JSON.stringify({ data: this.menuItems}, null, 4));
+    //console.log(JSON.stringify({ data: this.menuItems}, null, 4));
   }
 
 }

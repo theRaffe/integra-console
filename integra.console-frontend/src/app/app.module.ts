@@ -12,9 +12,10 @@ import { GrowlModule } from 'primeng/primeng';
 
 
 // used to create fake backend
+import { ENV_PROVIDERS } from './environment';
 //import { fakeBackendProvider } from './_helpers/index';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { BaseRequestOptions } from '@angular/http';
+//import { MockBackend, MockConnection } from '@angular/http/testing';
+//import { BaseRequestOptions } from '@angular/http';
  
 import { AuthGuard } from './_guards/index';
 import { AppComponent }  from './app.component';
@@ -49,11 +50,9 @@ import { MenuComponent } from './_menu/menu.component';
         AuthGuard,
         AuthenticationService,
         UserService,
-        // providers used to create fake backend
-        //fakeBackendProvider,
-        //MockBackend,
-        BaseRequestOptions,
-        {provide: LocationStrategy, useClass: PathLocationStrategy}
+        ENV_PROVIDERS
+        //BaseRequestOptions
+        //{provide: LocationStrategy, useClass: PathLocationStrategy}
     ],  
     bootstrap: [AppComponent]
 })

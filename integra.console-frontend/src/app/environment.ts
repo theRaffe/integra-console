@@ -3,6 +3,11 @@
 // rc2 workaround
 import { enableDebugTools, disableDebugTools } from '@angular/platform-browser';
 import { enableProdMode, ApplicationRef } from '@angular/core';
+
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers/index';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { BaseRequestOptions } from '@angular/http';
 // Environment Providers
 let PROVIDERS: any[] = [
   // common env directives
@@ -36,10 +41,15 @@ if ('production' === ENV) {
   };
 
   // Development
-  PROVIDERS = [
-    ...PROVIDERS,
-    // custom providers in development
-  ];
+  if ('development' ==  ENV){
+    PROVIDERS = [
+      ...PROVIDERS,
+      fakeBackendProvider,
+      MockBackend,
+      BaseRequestOptions
+    ];
+  }
+  
 
 }
 

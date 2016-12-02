@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
     loading = false;
     error = '';
     appVersionNumber = APP_VERSION;
+    environment = ENV;
     msgs: Message[] = [];
     
     constructor(
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['/']);
                 } else {
                     this.error = 'Username or password is incorrect';
+                    this.msgs.push({severity:'error', summary:'Error Login', detail: this.error});
                     this.loading = false;
                 }
             },            
