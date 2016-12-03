@@ -6,12 +6,11 @@ import { AuthGuard } from './_guards/index';
 import { TestDemo } from './test/index';
 
 const appRoutes: Routes = [
-    { path: 'login', component: LoginComponent, pathMatch: 'full' },
+    { path: 'login', component: LoginComponent,},
     { path: 'test', component: TestDemo },
-    { path: '', component: TestDemo },
-    { path: 'home', component: HomeComponent, pathMatch: 'full' }, 
+    { path: '', component: HomeComponent, canActivate: [AuthGuard],  pathMatch: 'full' }, 
     // otherwise redirect to home
-    //{ path: '**', redirectTo: '' }
+    { path: '**', redirectTo: '' }
 ];
  
 export const routing = RouterModule.forRoot(appRoutes, { useHash: true, preloadingStrategy: PreloadAllModules });

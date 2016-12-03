@@ -67,74 +67,16 @@ export class HomeComponent implements OnInit {
 
         this.items = [
             {
-                label: 'File',
-                icon: 'fa-file-o',
+                label: 'Menu1',
                 items: [{
-                        label: 'New', 
+                        label: 'Submenu1', 
                         icon: 'fa-plus',
-                        items: [
-                            {label: 'Project'},
-                            {label: 'Other'},
-                        ]
+                        routerLink : ['/test']
                     },
                     {label: 'Open'},
                     {label: 'Quit'}
                 ]
-            },
-            {
-                label: 'Edit',
-                icon: 'fa-edit',
-                items: [
-                    {label: 'Undo', icon: 'fa-mail-forward'},
-                    {label: 'Redo', icon: 'fa-mail-reply'}
-                ]
-            },
-            {
-                label: 'Help',
-                icon: 'fa-question',
-                items: [
-                    {
-                        label: 'Contents'
-                    },
-                    {
-                        label: 'Search', 
-                        icon: 'fa-search', 
-                        items: [
-                            {
-                                label: 'Text', 
-                                items: [
-                                    {
-                                        label: 'Workspace'
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'File'
-                            }
-                    ]}
-                ]
-            },
-            {
-                label: 'Actions',
-                icon: 'fa-gear',
-                items: [
-                    {
-                        label: 'Edit',
-                        icon: 'fa-refresh',
-                        items: [
-                            {label: 'Save', icon: 'fa-save'},
-                            {label: 'Update', icon: 'fa-save'},
-                        ]
-                    },
-                    {
-                        label: 'Other',
-                        icon: 'fa-phone',
-                        items: [
-                            {label: 'Delete', icon: 'fa-minus'}
-                        ]
-                    }
-                ]
-            }
+            }            
         ];
 
         console.log('finish ngOnInit');
