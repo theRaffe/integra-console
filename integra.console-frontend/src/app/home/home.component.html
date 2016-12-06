@@ -7,10 +7,12 @@
         </div>
         <div class="row">
             <nav>
-                <a routerLink="/test" routerLinkActive="active">test</a>
-                <a href="/test">test1</a>
+                <a [routerLink]="['./test']" routerLinkActive="active">test</a>
             </nav>
-            <!--router-outlet></router-outlet-->
+            <div style="color: green; margin-top: 1rem; heigth: 500px">Outlet:</div>
+            <div style="border: 2px solid green; padding: 1rem;">
+            <router-outlet></router-outlet>
+            </div>
             <p><a [routerLink]="['/login']" routerLinkActive="active">Logout</a></p>
         </div>
     </div>

@@ -10,6 +10,7 @@ export class TestDemo {
     private items: MenuItem[];
 
     ngOnInit() {
+        console.log('ngOnInit');
         /*this.items = [
             {
                 label: 'File',

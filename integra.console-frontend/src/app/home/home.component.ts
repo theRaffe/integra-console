@@ -69,11 +69,10 @@ export class HomeComponent implements OnInit {
             {
                 label: 'Menu1',
                 items: [{
-                        label: 'Submenu1', 
-                        icon: 'fa-plus',
-                        routerLink : ['/test']
+                        label: 'test', 
+                        routerLink : ['home/test']
                     },
-                    {label: 'Open'},
+                    {label: 'tes2', routerLink : ['home/test2'] },
                     {label: 'Quit'}
                 ]
             }            
