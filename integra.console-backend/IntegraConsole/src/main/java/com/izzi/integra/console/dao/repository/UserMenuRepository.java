@@ -11,13 +11,12 @@ import java.util.Set;
  */
 public interface UserMenuRepository extends Repository<UserMenu, Long> {
     @Query(value = "SELECT  " +
-            "        SYS_CONNECT_BY_PATH( menu_item_name, '/' ) path_id,\n" +
+            "        SYS_CONNECT_BY_PATH( menu_item_name, '/' ) PATH_ID,\n" +
             "        ORDER_ID,\n" +
             "        MENU_ITEM_ID,\n" +
             "        MENU_ITEM_NAME,\n" +
             "        MENU_PARENT_ID,\n" +
-            "        MENU_ACTION,\n" +
-            "        '' AS ROUTER_LINK\n" +
+            "        MENU_ACTION\n" +
             "FROM CONSOLE_USER_MENU\n" +
             "WHERE CONSOLE_USER_MENU.USERNAME = ?1\n" +
             "AND MENU_PARENT_ID IS NULL\n" +

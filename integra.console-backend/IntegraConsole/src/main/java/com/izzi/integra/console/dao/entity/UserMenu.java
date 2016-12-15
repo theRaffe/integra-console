@@ -3,6 +3,7 @@ package com.izzi.integra.console.dao.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.izzi.integra.console.dao.converter.RouterLinkConverter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -42,10 +43,10 @@ public class UserMenu implements Serializable {
     private Set<UserMenu> items;
 
     @Column(name = "MENU_ACTION")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @Convert(converter = RouterLinkConverter.class)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("routerLink")
-    private String menuAction;
-
+    private String[] menuAction;
 
     public Long getMenuItemId() {
         return menuItemId;
@@ -71,11 +72,11 @@ public class UserMenu implements Serializable {
         this.items = items;
     }
 
-    public String getMenuAction() {
+    public String[] getMenuAction() {
         return menuAction;
     }
 
-    public void setMenuAction(String menuAction) {
+    public void setMenuAction(String[] menuAction) {
         this.menuAction = menuAction;
     }
 
@@ -86,7 +87,6 @@ public class UserMenu implements Serializable {
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
-
 
     @Override
     public String toString() {
