@@ -10,6 +10,8 @@ import 'rxjs/add/operator/catch';
 export class AuthenticationService {
     public token: string;
 
+    
+
     constructor( private http: Http) {
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.token = currentUser && currentUser.token;
@@ -40,7 +42,6 @@ export class AuthenticationService {
     }
 
     private handleError (error: Response | any) {
-        console.log("entering handleError...");
         // In a real world app, we might use a remote logging infrastructure
         let errMsg: string;
         if (error instanceof Response) {

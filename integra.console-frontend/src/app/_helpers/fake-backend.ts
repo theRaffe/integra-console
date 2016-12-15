@@ -21,7 +21,7 @@ export let fakeBackendProvider = {
                     // check user credentials and return fake jwt token if valid
                     if (params.username === testUser.username && params.password === testUser.password) {
                         connection.mockRespond(new Response(
-                            new ResponseOptions({ status: 200, body: { token: 'fake-jwt-token' } })
+                            new ResponseOptions({ status: 200, body: { token: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwLXJicmlvbmVzIiwiYXVkaWVuY2UiOiJ3ZWIiLCJjcmVhdGVkIjoxNDgxNTcwMzIyMTg1LCJleHAiOjE0ODIxNzUxMjJ9.iODa2i4Nl_Ik5CV3ElRsJo9qIXiSesSF3uLak_FN9STymz5WCIVpU7RG6BqTwzyiG5Q07pPbm7OK3qbZfAqnTA' } })
                         ));
                     } else {
                         connection.mockRespond(new Response(
@@ -45,6 +45,48 @@ export let fakeBackendProvider = {
                         ));
                     }
                 }
+
+                // fake service getUserInformation
+                if (connection.request.url.endsWith(`${app_context}/getUserInformation`) && connection.request.method === RequestMethod.Get) {
+                    connection.mockRespond(new Response(
+                            new ResponseOptions({ status: 200, body: {
+                                success: true,
+                                message: '',
+                                profileName: 'ROLE_ADMIN',
+                                menuItems: [
+                                     {
+                                        "label": "pantalla-1",
+                                        "items": [
+                                            {
+                                                "label": "pantalla-1-1",
+                                                "routerLink": ["home/test"]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "label": "pantalla-2",
+                                        "items": [
+                                            {
+                                                "label": "pantalla-2-1",
+                                                "routerLink": "action 2-1"
+                                            },
+                                            {
+                                                "label": "pantalla-2-2",
+                                                "items": [
+                                                    {
+                                                        "label": "pantalla-2-2-1",
+                                                        "routerLink": "action-2-2-1"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+
+                            } })
+
+                        ));
+                }
  
             }, 500);
  

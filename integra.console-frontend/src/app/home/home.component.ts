@@ -78,7 +78,20 @@ export class HomeComponent implements OnInit {
             }            
         ];
 
+        this.userService.getUserInformation()
+          .subscribe(
+            data => {
+              console.log(data.menuItems)
+              this.items = data.menuItems;
+
+            },
+            err => console.log(err),
+            () => console.log('Request Complete')
+          );
+
         console.log('finish ngOnInit');
     }
+
+
  
 }

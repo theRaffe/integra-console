@@ -14,6 +14,9 @@ import { ButtonModule } from 'primeng/primeng';
 import { OverlayPanelModule } from 'primeng/primeng';
 import { GrowlModule } from 'primeng/primeng';
 
+import { provideAuth } from 'angular2-jwt';
+import { AuthenticationService }  from '../_services/index';
+
 @NgModule({
     imports: [
         IConsoleRoutingModule,
@@ -30,7 +33,20 @@ import { GrowlModule } from 'primeng/primeng';
         NoContentComponent
     ],
     providers: [
-        UserService
+        UserService,
+        AuthenticationService,
+        provideAuth({
+            headerName: 'Authorization',
+            headerPrefix: '',
+            tokenName: 'id_token',
+            tokenGetter: (() => {
+                console.log(localStorage.getItem('currentUser'));
+                return JSON.parse(localStorage.getItem('currentUser')).token;
+            }),
+            globalHeaders: [{'Content-Type':'application/json'}],
+            noJwtError: true,
+            noTokenScheme: true
+            })
     ]
 })
 

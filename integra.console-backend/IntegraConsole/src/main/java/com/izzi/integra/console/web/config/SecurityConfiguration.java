@@ -1,6 +1,7 @@
 package com.izzi.integra.console.web.config;
 
 import com.izzi.integra.console.auth.provider.RestAuthenticationProvider;
+import com.izzi.integra.console.security.JwtAccessDeniedEntryPoint;
 import com.izzi.integra.console.security.JwtAuthenticationEntryPoint;
 import com.izzi.integra.console.security.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.servlet.http.HttpServletResponse;
+
 
 @Configuration
 @EnableWebSecurity
@@ -22,6 +25,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private JwtAuthenticationEntryPoint unauthorizedHandler;
+
+	@Autowired
+	private JwtAccessDeniedEntryPoint accessDeniedHandler;
 
 	@Autowired
 	private RestAuthenticationProvider customAuthenticationProvider;
@@ -41,7 +47,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+			.exceptionHandling()
+				//.authenticationEntryPoint(unauthorizedHandler)
+				.accessDeniedHandler(accessDeniedHandler).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests()
 				.antMatchers(                        
@@ -59,7 +67,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					"/**/*.svg"
 				).permitAll()
 				.antMatchers("/auth").permitAll()
-				.antMatchers("/api/users/login").permitAll()    // Permit access for all to login REST service
+                .antMatchers("/getUserInformation").permitAll()
 				.antMatchers("/").permitAll()				    // Neccessary to permit access to default document
 			.anyRequest().authenticated().and()				    // All other requests require authentication
 			//.httpBasic().and()
