@@ -15,69 +15,66 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.servlet.http.HttpServletResponse;
-
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private JwtAuthenticationEntryPoint unauthorizedHandler;
+    @Autowired
+    private JwtAuthenticationEntryPoint unauthorizedHandler;
 
-	@Autowired
-	private JwtAccessDeniedEntryPoint accessDeniedHandler;
+    @Autowired
+    private JwtAccessDeniedEntryPoint accessDeniedHandler;
 
-	@Autowired
-	private RestAuthenticationProvider customAuthenticationProvider;
+    @Autowired
+    private RestAuthenticationProvider customAuthenticationProvider;
 
-	@Autowired
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.authenticationProvider(this.customAuthenticationProvider);
+    @Autowired
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(this.customAuthenticationProvider);
 
-	}
+    }
 
-	@Bean
+    @Bean
     public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
         return new JwtAuthenticationTokenFilter();
     }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.exceptionHandling()
-				//.authenticationEntryPoint(unauthorizedHandler)
-				.accessDeniedHandler(accessDeniedHandler).and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.authorizeRequests()
-				.antMatchers(                        
-					"/",
-					"/*.html",
-					"/favicon.ico",
-					"/**/*.html",
-					"/**/*.css",
-					"/**/*.js",
-					"/**/*.png",
-					"/**/*.ttf",
-					"/**/*.woff",
-					"/**/*.woff2",
-					"/**/*.eot",
-					"/**/*.svg"
-				).permitAll()
-				.antMatchers("/auth").permitAll()
-                .antMatchers("/getUserInformation").permitAll()
-				.antMatchers("/").permitAll()				    // Neccessary to permit access to default document
-			.anyRequest().authenticated().and()				    // All other requests require authentication
-			//.httpBasic().and()
-			.logout().and()
-			.csrf().disable();
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .exceptionHandling()
+                .authenticationEntryPoint(unauthorizedHandler).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .authorizeRequests()
+                .antMatchers(
+                        "/",
+                        "/*.html",
+                        "/favicon.ico",
+                        "/**/*.html",
+                        "/**/*.css",
+                        "/**/*.js",
+                        "/**/*.png",
+                        "/**/*.ttf",
+                        "/**/*.woff",
+                        "/**/*.woff2",
+                        "/**/*.eot",
+                        "/**/*.svg"
+                ).permitAll()
+                .antMatchers("/auth").permitAll()
+                //.antMatchers("/getUserInformation").permitAll()
+                .antMatchers("/").permitAll()                    // Neccessary to permit access to default document
+                .anyRequest().authenticated().and()                    // All other requests require authentication
+                //.httpBasic().and()
+                .logout().and()
+                .csrf().disable();
 
-		// Custom JWT based security filter
+        // Custom JWT based security filter
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 
         // disable page caching
         http.headers().cacheControl();
-	}
+    }
 }

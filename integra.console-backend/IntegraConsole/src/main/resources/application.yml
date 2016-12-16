@@ -22,6 +22,8 @@ jwt:
 
 auth:
   endpoint: http://172.21.21.21:11006/izzi-ldap-auth/auth
+  message:
+    token: Authentication token is missing or invalid
 #logging:
 #  level:
 #    org.springframework:
