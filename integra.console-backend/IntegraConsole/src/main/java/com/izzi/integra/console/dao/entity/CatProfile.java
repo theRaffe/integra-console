@@ -35,6 +35,16 @@ public class CatProfile {
     @NotNull
     private String creationUser;
 
+    @Column(name = "ACTIVE", length = 1)
+    private String isActive;
+
+    public CatProfile(String profileName, String creationUser, Date creationDate, Date lastUpdate){
+        this.profileName = profileName;
+        this.creationUser = creationUser;
+        this.creationDate = creationDate;
+        this.lastUpdate = lastUpdate;
+    }
+
     public Long getProfileId() {
         return profileId;
     }
@@ -73,5 +83,13 @@ public class CatProfile {
 
     public void setCreationUser(String creationUser) {
         this.creationUser = creationUser;
+    }
+
+    public String getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
     }
 }

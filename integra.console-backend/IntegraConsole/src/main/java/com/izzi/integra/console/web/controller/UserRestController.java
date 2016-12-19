@@ -3,15 +3,14 @@ package com.izzi.integra.console.web.controller;
 import com.izzi.integra.console.dao.entity.UserMenu;
 import com.izzi.integra.console.service.CatUserService;
 import com.izzi.integra.console.service.UserMenuService;
+import com.izzi.integra.console.web.request.UserRestRequest;
 import com.izzi.integra.console.web.response.UserRestResponse;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -46,4 +45,34 @@ public class UserRestController {
 
         return ResponseEntity.ok(ls);
     }
+
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    public ResponseEntity<?> addUser(@RequestBody UserRestRequest userRestRequest) {
+
+        logger.debug(MessageFormat.format("Adding user {0}",  ReflectionToStringBuilder.toString(userRestRequest)));
+        final UserRestResponse userRestResponse = catUserService.saveUser(userRestRequest);
+
+        return ResponseEntity.ok(userRestResponse);
+    }
+
+    @RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
+    public ResponseEntity<?> modifyUser(@RequestBody UserRestRequest userRestRequest) {
+
+        logger.debug(MessageFormat.format("Updating user {0}",  ReflectionToStringBuilder.toString(userRestRequest)));
+        final UserRestResponse userRestResponse = catUserService.updateUser(userRestRequest);
+
+        return ResponseEntity.ok(userRestResponse);
+    }
+
+
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+    public ResponseEntity<?> deleteUser(@RequestBody UserRestRequest userRestRequest) {
+
+        logger.debug(MessageFormat.format("Deleting user {0}",  ReflectionToStringBuilder.toString(userRestRequest)));
+        final UserRestResponse userRestResponse = catUserService.deleteUser(userRestRequest.getUserId());
+
+        return ResponseEntity.ok(userRestResponse);
+    }
+
+
 }

@@ -5,6 +5,7 @@ import com.izzi.integra.console.dao.repository.LogMessageRepository;
 import com.izzi.integra.console.web.request.LogMessageRequest;
 import com.izzi.integra.console.web.response.LogMessageResponse;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
@@ -60,7 +61,7 @@ public class LogMessageService {
                 .and(logTypeIdPredicate);
 
         Predicate predicate = expression;
-
+        OrderSpecifier sorter = qLogMessage.creationDate.asc();
         try {
             return new LogMessageResponse(true, "success", logMessageRepository.findAll(predicate));
         }catch(final Exception e){

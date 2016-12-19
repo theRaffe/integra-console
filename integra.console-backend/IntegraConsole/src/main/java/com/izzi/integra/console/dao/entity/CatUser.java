@@ -44,6 +44,17 @@ public class CatUser {
     @JoinColumn(name = "PROFILE_ID")
     private CatProfile profile;
 
+    @Column(name = "ACTIVE", length = 1)
+    private String isActive;
+
+    public CatUser(String username, String creationUser, Date creationDate, Date lastUpdate, CatProfile profile){
+        this.username = username;
+        this.creationUser = creationUser;
+        this.creationDate = creationDate;
+        this.lastUpdate = lastUpdate;
+        this.profile = profile;
+    }
+
     public Long getId() {
         return id;
     }
@@ -99,5 +110,13 @@ public class CatUser {
 
     public void setProfile(CatProfile profile) {
         this.profile = profile;
+    }
+
+    public String getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
     }
 }
