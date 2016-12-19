@@ -9,6 +9,11 @@
         <wls:prefer-application-packages>
             <wls:package-name>org.slf4j.*</wls:package-name>
             <wls:package-name>org.springframework.*</wls:package-name>
+            <wls:package-name>org.jboss.logging.*</wls:package-name>
+            <wls:package-name>com.fasterxml.jackson.*</wls:package-name>
         </wls:prefer-application-packages>
+        <wls:prefer-application-resources>
+            <wls:resource-name>org/jboss/logging/Logger.class</wls:resource-name>
+        </wls:prefer-application-resources>
     </wls:container-descriptor>
 </wls:weblogic-web-app>
