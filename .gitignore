@@ -31,6 +31,8 @@ integra.console-backend/*.iws
 
 # IntelliJ
 integra.console-backend/out/
-integra.console-backend/log
+integra.console-backend/log/
 integra.console-backend/*.log
 integra.console-backend/IntegraConsole/target/**
+integra.console-backend/IntegraConsole/log/
+integra.console-backend/IntegraConsole/*.log
