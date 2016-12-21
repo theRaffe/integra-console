@@ -50,11 +50,11 @@ public class CatUser {
     @Convert(converter = ActiveConverter.class)
     private Boolean active;
 
-    public CatUser(String username, String creationUser, Date creationDate, Date lastUpdate, CatProfile profile){
+    public CatUser(String username, String creationUser, Date creationDate, CatProfile profile){
         this.username = username;
         this.creationUser = creationUser;
         this.creationDate = creationDate;
-        this.lastUpdate = lastUpdate;
+        this.lastUpdate = creationDate;
         this.profile = profile;
     }
 

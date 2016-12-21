@@ -58,4 +58,15 @@ public class UserRestRequest {
     public void setIsActive(Boolean active) {
         this.active = active;
     }
+
+    public UserRestRequest(String username, Long userId, Long profileId, String profileName, String creationUser, Boolean active) {
+        this.username = username;
+        this.userId = userId;
+        this.profileId = profileId;
+        this.profileName = profileName;
+        this.creationUser = creationUser;
+        this.active = active;
+    }
+
+    public UserRestRequest(){}
 }

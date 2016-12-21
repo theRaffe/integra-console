@@ -4,7 +4,6 @@ import com.izzi.integra.console.dao.entity.CatProfile;
 import com.izzi.integra.console.dao.entity.CatUser;
 import com.izzi.integra.console.dao.repository.CatProfileRepository;
 import com.izzi.integra.console.dao.repository.CatUserRepository;
-import com.izzi.integra.console.util.Constants;
 import com.izzi.integra.console.web.request.UserRestRequest;
 import com.izzi.integra.console.web.response.UserRestResponse;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
@@ -43,7 +42,6 @@ public class CatUserService {
             return new UserRestResponse(true, "Success",
                     userRepository.save(new CatUser(user.getUsername(),
                             user.getCreationUser(),
-                            new java.util.Date(),
                             new java.util.Date(),
                             profile)));
         } catch (final Exception e) {

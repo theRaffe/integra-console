@@ -4,16 +4,14 @@ import com.izzi.integra.console.dao.entity.CatProfile;
 import com.izzi.integra.console.dao.entity.CatUser;
 import com.izzi.integra.console.dao.repository.CatProfileRepository;
 import com.izzi.integra.console.dao.repository.CatUserRepository;
-import com.izzi.integra.console.service.CatUserService;
-import com.izzi.integra.console.web.response.UserRestResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -27,10 +25,10 @@ public class UserRepositoryTest {
     private TestEntityManager entityManager;
 
     @Autowired
-    private CatUserRepository catUserRepository;
+    private CatUserRepository userRepository;
 
     @Autowired
-    private CatProfileRepository catProfileRepository;
+    private CatProfileRepository profileRepository;
 
     private CatUser catUser1;
 
@@ -41,16 +39,16 @@ public class UserRepositoryTest {
         this.entityManager.persist(catProfile1);
         this.entityManager.persist(catProfile2);
 
-        catUser1 = new CatUser("user1", "initial data", new java.util.Date(), new java.util.Date(), catProfile1);
+        catUser1 = new CatUser("user1", "initial data", new java.util.Date(), catProfile1);
         this.entityManager.persist(catUser1);
     }
 
     @Test
     public void updateUserProfileTest() {
         final String profileName = "ROLE_SUPPORT";
-        final CatProfile catProfile = catProfileRepository.findByProfileName(profileName);
+        final CatProfile catProfile = profileRepository.findByProfileName(profileName);
         catUser1.setProfile(catProfile);
-        final CatUser result = catUserRepository.save(catUser1);
+        final CatUser result = userRepository.save(catUser1);
 
         assertThat(result).isNotEqualTo(null);
         assertThat(result.getProfile().getProfileName()).isEqualTo(profileName);
