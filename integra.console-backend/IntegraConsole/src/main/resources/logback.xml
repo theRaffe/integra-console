@@ -23,9 +23,9 @@
         </encoder>
     </appender>
 
-    <root level="info" additivity="false">
+    <root level="ALL" additivity="false">
         <appender-ref ref="STDOUT"/>
-        <appender-ref ref="FILE"/>
+        <!--appender-ref ref="FILE"/-->
     </root>
 
 

@@ -23,11 +23,6 @@ public class CatUser {
     @NotNull
     private String username;
 
-    /*@Column(name = "PROFILE_ID")
-    @NotNull
-    private Long profileId;
-    */
-
     @Column(name = "CREATION_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
@@ -56,6 +51,7 @@ public class CatUser {
         this.creationDate = creationDate;
         this.lastUpdate = creationDate;
         this.profile = profile;
+        this.active = true;
     }
 
     public Long getId() {
@@ -73,15 +69,6 @@ public class CatUser {
     public void setUsername(String username) {
         this.username = username;
     }
-
-    /*public Long getProfileId() {
-        return profileId;
-    }
-
-    public void setProfileId(Long profileId) {
-        this.profileId = profileId;
-    }
-    */
 
     public Date getCreationDate() {
         return creationDate;

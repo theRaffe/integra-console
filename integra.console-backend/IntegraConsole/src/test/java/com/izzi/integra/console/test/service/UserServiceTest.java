@@ -60,7 +60,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void updatingCatUserTest() {
+    public void updatingCatUserSuccessTest() {
         when(userRepositoryMock.findByUsername(this.request1.getUsername())).thenReturn(user1);
         when(profileRepositoryMock.findByProfileName(this.request1.getProfileName())).thenReturn(profile2);
         when(userRepositoryMock.save(any(CatUser.class)))
@@ -79,6 +79,14 @@ public class UserServiceTest {
         assertThat(userRestResponse.getCatUser()).isNotNull();
         assertThat(userRestResponse.getCatUser().getProfile().getProfileName()).isEqualTo(this.request1.getProfileName());
 
+    }
+
+    @Test
+    public void updatingCatUserFailTest(){
+        final UserRestResponse userRestResponse = this.catUserService.updateUser(this.request1);
+        logger.info(MessageFormat.format("userRestResponse: {0}", userRestResponse));
+        assertThat(userRestResponse).isNotNull();
+        assertThat(userRestResponse.isSuccess()).isFalse();
     }
 
     private CatUser copyUser(final CatUser originalUser) {

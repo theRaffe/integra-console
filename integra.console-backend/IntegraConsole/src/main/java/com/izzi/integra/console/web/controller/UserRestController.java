@@ -33,7 +33,6 @@ public class UserRestController {
 
         logger.debug(MessageFormat.format("searching user {0}", username));
         final UserRestResponse userRestResponse = catUserService.loadUserByUsername(username);
-
         return ResponseEntity.ok(userRestResponse);
     }
 

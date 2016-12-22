@@ -45,9 +45,15 @@ CREATE TABLE CONSOLE_PROFILE_MENU (
     LAST_UPDATE TIMESTAMP (6) DEFAULT CURRENT_TIMESTAMP
 );
 
-insert into CONSOLE_CAT_PROFILE select 1, 'admin', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'initial', 'Y' from dual;
+insert into CONSOLE_CAT_PROFILE select 1, 'ROLE_ADMIN', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'initial', 'Y' from dual;
+insert into CONSOLE_CAT_PROFILE select MAX(PROFILE_ID) + 1, 'ROLE_SUPPORT', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'initial', 'Y' from CONSOLE_CAT_PROFILE;
 
 insert into CONSOLE_CAT_USER select 1, 'rafael.briones.ext', 1, sysdate, 'initial', sysdate, 'Y' from dual;
+insert into CONSOLE_CAT_USER select MAX(USER_ID)+1, 'p-rbriones', 1, sysdate, 'initial', sysdate, 'Y' from CONSOLE_CAT_USER;
+insert into CONSOLE_CAT_USER select MAX(USER_ID)+1, 'p-tmoreno', 1, sysdate, 'initial', sysdate, 'Y' from CONSOLE_CAT_USER;
+insert into CONSOLE_CAT_USER select MAX(USER_ID)+1, 'laura.hernandez.ext', 1, sysdate, 'initial', sysdate, 'Y' from CONSOLE_CAT_USER;
+
+
 --delete from CONSOLE_CAT_MENU_ITEM;
 insert into CONSOLE_CAT_MENU_ITEM select 1, 'pantalla-1', null, sysdate, 'initial' from dual;
 insert into CONSOLE_CAT_MENU_ITEM select 2, 'pantalla-1-1', 'action 1-1', sysdate, 'initial' from dual;
