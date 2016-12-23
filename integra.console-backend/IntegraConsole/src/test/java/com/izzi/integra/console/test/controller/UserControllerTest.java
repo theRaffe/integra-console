@@ -5,10 +5,8 @@ import com.izzi.integra.console.dao.entity.CatProfile;
 import com.izzi.integra.console.dao.entity.CatUser;
 import com.izzi.integra.console.service.CatUserService;
 import com.izzi.integra.console.service.UserMenuService;
-import com.izzi.integra.console.test.service.UserServiceTest;
 import com.izzi.integra.console.web.controller.UserRestController;
 import com.izzi.integra.console.web.response.UserRestResponse;
-import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,17 +21,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.hamcrest.core.Is.is;
-import static org.mockito.Mockito.mock;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
 import java.text.MessageFormat;
 import java.util.Date;
 
+import static org.hamcrest.core.Is.is;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Created by Rafael on 21/12/2016.
@@ -58,6 +52,7 @@ public class UserControllerTest {
     private CatUser userResult1;
     private String userRequest1;
     private UserRestResponse userRestResponseOk;
+    private UserRestResponse userRestResponseNotFound;
 
     @Before
     public void setup(){
@@ -73,6 +68,8 @@ public class UserControllerTest {
         final CatProfile profile1 = new CatProfile(profileName1, "Initial", currentDate);
         userResult1 = new CatUser(userRequest1, "Initial", currentDate, profile1);
         userRestResponseOk =  new UserRestResponse(true, "success", userResult1);
+
+        userRestResponseNotFound = new UserRestResponse(false, "user not found!!", null);
     }
 
     @Test
@@ -90,11 +87,11 @@ public class UserControllerTest {
 
     @Test
     public void getUserFail()throws Exception{
-        given(userServiceMock.loadUserByUsername("nouser")).willReturn(userRestResponseOk);
+        given(userServiceMock.loadUserByUsername(userRequest1)).willReturn(userRestResponseNotFound);
 
         final ResultActions resultActions =  this.mockMvc.perform(get("/getUser").param("username", userRequest1).accept(MediaType.APPLICATION_JSON));
         logger.info(MessageFormat.format("result of /getUser test fail: {0}", resultActions.andReturn().getResponse().getContentAsString()));
         resultActions.andExpect(status().isOk());
-                //.andExpect(jsonPath("$[0].success", is(false)));
+        resultActions.andExpect(jsonPath("$.success", is(false)));
     }
 }
