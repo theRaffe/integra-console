@@ -4,6 +4,7 @@ import com.izzi.integra.console.dao.entity.CatProfile;
 import com.izzi.integra.console.dao.entity.CatUser;
 import com.izzi.integra.console.dao.repository.CatProfileRepository;
 import com.izzi.integra.console.dao.repository.CatUserRepository;
+import com.izzi.integra.console.service.validation.ResultValidation;
 import com.izzi.integra.console.web.request.UserRestRequest;
 import com.izzi.integra.console.web.response.UserRestResponse;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
+
+import static com.izzi.integra.console.service.validation.UserServiceValidator.validateUserUpdate;
 
 /**
  * Created by Rafael on 15/11/2016.
@@ -54,6 +57,14 @@ public class CatUserService {
         try {
             final CatProfile profile = profileRepository.findByProfileName(user.getProfileName());
             final CatUser catUser = userRepository.findByUsername(user.getUsername());
+
+            final ResultValidation resultValidation = validateUserUpdate(catUser, profile);
+            if (!resultValidation.isSuccess()) {
+                return new UserRestResponse(false,
+                        resultValidation.getMessage(),
+                        null);
+            }
+
             catUser.setProfile(profile);
             catUser.setLastUpdate(new java.util.Date());
             return new UserRestResponse(true,
@@ -84,4 +95,5 @@ public class CatUserService {
             return new UserRestResponse(false, e.getMessage(), null);
         }
     }
+
 }
