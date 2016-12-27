@@ -1,6 +1,5 @@
 package com.izzi.integra.console.web.request;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,8 +19,8 @@ public class LogMessageRequest {
     private String businessMsgId;
     private Long logId;
     private String processId;
-    private String fromDate;
-    private String toDate;
+    private Date fromDate;
+    private Date toDate;
     private Long logTypeId;
 
 
@@ -50,18 +49,18 @@ public class LogMessageRequest {
     }
 
     public Date getFromDate() {
-        return formatStringToDate(fromDate);
+        return this.fromDate;
     }
 
-    public void setFromDate(String fromDate) {
+    public void setFromDate(Date fromDate) {
         this.fromDate = fromDate;
     }
 
     public Date getToDate() {
-        return formatStringToDate(toDate);
+        return this.toDate;
     }
 
-    public void setToDate(String toDate) {
+    public void setToDate(Date toDate) {
         this.toDate = toDate;
     }
 
@@ -73,9 +72,9 @@ public class LogMessageRequest {
         this.logTypeId = logTypeId;
     }
 
-    private Date formatStringToDate(String date){
+    private Date formatStringToDate(String date) {
         try {
-            return SDF_ddMMyyyy_HHmm.parse(date);
+            return date != null && !"".equals(date) ? SDF_ddMMyyyy_HHmm.parse(date) : null;
         } catch (ParseException e) {
             logger.error(MessageFormat.format("Error at parsing Date: {0}", date), e);
             return null;

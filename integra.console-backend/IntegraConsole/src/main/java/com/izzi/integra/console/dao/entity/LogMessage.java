@@ -1,9 +1,6 @@
 package com.izzi.integra.console.dao.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -15,6 +12,8 @@ public class LogMessage {
 
     @Id
     @Column(name = "LOG_ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LOG_ID_SEQ")
+    @SequenceGenerator(name = "LOG_ID_SEQ", sequenceName = "LOG_ID_SEQ", allocationSize = 1)
     private Long logId;
 
     @Column(name = "LOG_TYPE_ID")
@@ -298,5 +297,37 @@ public class LogMessage {
 
     public void setSequence(String sequence) {
         this.sequence = sequence;
+    }
+
+    @Override
+    public String toString() {
+        return "LogMessage{" +
+                "logId=" + logId +
+                ", logTypeId=" + logTypeId +
+                ", processId='" + processId + '\'' +
+                ", processName='" + processName + '\'' +
+                ", subprocess='" + subprocess + '\'' +
+                ", info='" + info + '\'' +
+                ", originId='" + originId + '\'' +
+                ", originName='" + originName + '\'' +
+                ", destinationId='" + destinationId + '\'' +
+                ", destinationName='" + destinationName + '\'' +
+                ", creationDate=" + creationDate +
+                ", processIdentifier='" + processIdentifier + '\'' +
+                ", resendableMessage='" + resendableMessage + '\'' +
+                ", errorId=" + errorId +
+                ", errorCode='" + errorCode + '\'' +
+                ", errorStatus=" + errorStatus +
+                ", retryCount=" + retryCount +
+                ", businessMsgId='" + businessMsgId + '\'' +
+                ", errorDesc='" + errorDesc + '\'' +
+                ", errorAutomaticActionType=" + errorAutomaticActionType +
+                ", processQueue='" + processQueue + '\'' +
+                ", flag=" + flag +
+                ", serviceId='" + serviceId + '\'' +
+                ", application='" + application + '\'' +
+                ", category='" + category + '\'' +
+                ", sequence='" + sequence + '\'' +
+                '}';
     }
 }
