@@ -48,11 +48,12 @@ public class LogMessageService {
                 .and(logIdPredicate)
                 .and(logTypeIdPredicate);
         try {
-            final List<LogMessage> logMessage = logMessageRepository.findAll(predicate);
-            if (logMessage == null) {
+            final List<LogMessage> logMessages = logMessageRepository.findAll(predicate);
+            if (logMessages == null || logMessages.size() == 0) {
                 return new LogMessageResponse(false, "Records not found", null);
             }
-            return new LogMessageResponse(true, "success", logMessage);
+
+            return new LogMessageResponse(true, "success", logMessages);
         } catch (final Exception e) {
             logger.error(MessageFormat.format("Error at getting LogMessage: {0}", ReflectionToStringBuilder.toString(logMessageRequest)), e);
             return new LogMessageResponse(false, e.getMessage(), null);

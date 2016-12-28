@@ -28,5 +28,4 @@
         <!--appender-ref ref="FILE"/-->
     </root>
 
-
 </configuration>

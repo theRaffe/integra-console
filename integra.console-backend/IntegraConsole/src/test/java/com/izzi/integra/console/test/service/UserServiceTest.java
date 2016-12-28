@@ -82,7 +82,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void updatingCatUserFailTest(){
+    public void updatingCatUserFailTest() {
         final UserRestResponse userRestResponse = this.catUserService.updateUser(this.request1);
         logger.info(MessageFormat.format("userRestResponse: {0}", userRestResponse));
         assertThat(userRestResponse).isNotNull();
