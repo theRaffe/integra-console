@@ -45,6 +45,8 @@ public class CatUser {
     @Convert(converter = ActiveConverter.class)
     private Boolean active;
 
+    public CatUser(){}
+    
     public CatUser(String username, String creationUser, Date creationDate, CatProfile profile){
         this.username = username;
         this.creationUser = creationUser;

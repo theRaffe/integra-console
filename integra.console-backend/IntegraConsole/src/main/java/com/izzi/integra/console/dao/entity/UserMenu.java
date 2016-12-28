@@ -1,12 +1,13 @@
 package com.izzi.integra.console.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.izzi.integra.console.dao.converter.RouterLinkConverter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Rafael on 16/11/2016.
@@ -21,8 +22,7 @@ public class UserMenu implements Serializable {
     @Column(name = "MENU_ITEM_ID")
     @JsonIgnore
     private Long menuItemId;
-    /*@Column(name = "PATH_ID")
-    private String pathId;*/
+
     @Column(name = "ORDER_ID")
     @JsonIgnore
     private Long orderId;
@@ -30,17 +30,23 @@ public class UserMenu implements Serializable {
     @Column(name = "MENU_ITEM_NAME")
     @JsonProperty("label")
     private String menuItemName;
+
     @OneToMany(
-            cascade = {CascadeType.ALL},
+            cascade = {CascadeType.PERSIST},
+            fetch = FetchType.LAZY,
             orphanRemoval = true
     )
     @JoinColumn(name = "MENU_PARENT_ID")
     @OrderColumn(name = "ORDER_ID")
     @JsonProperty("items")
-    private List<UserMenu> items;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private Set<UserMenu> items;
 
     @Column(name = "MENU_ACTION")
-    private String menuAction;
+    @Convert(converter = RouterLinkConverter.class)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @JsonProperty("routerLink")
+    private String[] menuAction;
 
     public Long getMenuItemId() {
         return menuItemId;
@@ -58,19 +64,19 @@ public class UserMenu implements Serializable {
         this.menuItemName = menuItemName;
     }
 
-    public List<UserMenu> getItems() {
+    public Set<UserMenu> getItems() {
         return items;
     }
 
-    public void setItems(List<UserMenu> items) {
+    public void setItems(Set<UserMenu> items) {
         this.items = items;
     }
 
-    public String getMenuAction() {
+    public String[] getMenuAction() {
         return menuAction;
     }
 
-    public void setMenuAction(String menuAction) {
+    public void setMenuAction(String[] menuAction) {
         this.menuAction = menuAction;
     }
 
@@ -81,14 +87,6 @@ public class UserMenu implements Serializable {
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
-
-    /*public String getPathId() {
-        return pathId;
-    }
-
-    public void setPathId(String pathId) {
-        this.pathId = pathId;
-    }*/
 
     @Override
     public String toString() {
