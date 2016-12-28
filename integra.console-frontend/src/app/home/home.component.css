@@ -1,0 +1,25 @@
+.home-screen {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  flex-direction: column;
+}
+
+.title {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #2C3E50;
+    color: #ECF0F1;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 0px;
+}
+
+.btnMenu {
+    background-color: #2C3E50 !important;
+    height: 40px !important;
+}

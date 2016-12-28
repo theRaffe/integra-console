@@ -15,11 +15,5 @@ public interface CatProfileRepository  extends JpaRepository<CatProfile,Long> {
 
     List<CatProfile> findAll();
 
-    @Modifying
-    @Query(value="UPDATE CONSOLE_CAT_PROFILE P SET P.PROFILE_NAME = ?1, WHERE P.PROFILE_ID = ?2")
-    CatProfile updateById(String profileName, Long profileId);
-
-    @Modifying
-    @Query(value="UPDATE CONSOLE_CAT_PROFILE P SET P.ACTIVE = ?1 WHERE P.PROFILE_ID = ?2")
-    CatProfile updateStatus(String isActive, Long profileId);
+    CatProfile findByProfileId(final Long profileId);
 }

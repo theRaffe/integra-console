@@ -8,6 +8,13 @@ spring:
     serialization:
       INDENT_OUTPUT: true
 
+  logging:
+    level:
+      org.springframework:
+          web: WARN
+          security: WARN
+      org.hibernate: ERROR
+
 route:
     authentication:
       path: auth
@@ -22,6 +29,8 @@ jwt:
 
 auth:
   endpoint: http://172.21.21.21:11006/izzi-ldap-auth/auth
+  message:
+    token: Authentication token is missing or invalid
 #logging:
 #  level:
 #    org.springframework:

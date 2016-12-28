@@ -25,58 +25,58 @@ public class CatProfileService {
     @Autowired
     private CatProfileRepository profileRepository;
 
-    public ProfileResponse getProfiles(){
-        try{
+    public ProfileResponse getProfiles() {
+        try {
             return new ProfileResponse(true, "Success", profileRepository.findAll());
-        }catch(final Exception e){
+        } catch (final Exception e) {
             logger.error("Error at getting all profiles", e);
             return new ProfileResponse(false, e.getMessage(), new ArrayList<CatProfile>());
         }
     }
 
-    public  ProfileResponse saveProfile(ProfileRequest profile){
-        CatProfile catProf = null;
+    public ProfileResponse saveProfile(ProfileRequest profile) {
         try {
             return new ProfileResponse(true, "Success",
                     profileRepository.save(new CatProfile(profile.getProfileName(),
                             profile.getCreationUser(),
-                            new java.util.Date(),
                             new java.util.Date())));
-        }catch(final Exception e){
+        } catch (final Exception e) {
             logger.error(MessageFormat.format("Error at persisting CatProfile: {0}", ReflectionToStringBuilder.toString(profile)), e);
-            return new ProfileResponse(false, e.getMessage(), catProf);
+            return new ProfileResponse(false, e.getMessage(), null);
         }
     }
 
-    public ProfileResponse updateProfile(ProfileRequest profile){
-        CatProfile catProf = null;
+    public ProfileResponse updateProfile(ProfileRequest profile) {
         try {
+            final CatProfile catProfile = profileRepository.findByProfileId(profile.getProfileId());
+            catProfile.setProfileName(profile.getProfileName());
+            catProfile.setLastUpdate(new java.util.Date());
             return new ProfileResponse(true,
                     "Success",
-                    profileRepository.updateById(profile.getProfileName(), profile.getProfileId()));
-        }catch(Exception e){
+                    profileRepository.save(catProfile));
+        } catch (final Exception e) {
             logger.error(MessageFormat.format("Error at persisting CatProfile: {0}", ReflectionToStringBuilder.toString(profile)), e);
-            return new ProfileResponse(false, e.getMessage(), catProf);
+            return new ProfileResponse(false, e.getMessage(), null);
         }
     }
 
-    public ProfileResponse deleteProfile(Long profileId){
-        CatProfile catProf = null;
-        try {
-            return new ProfileResponse(true, "Success", profileRepository.updateStatus(Constants.N, profileId));
-        }catch(Exception e){
-            logger.error(MessageFormat.format("Error at deleting CatProfile: {0}", profileId), e);
-            return new ProfileResponse(false, e.getMessage(), catProf);
-        }
+    public ProfileResponse deleteProfile(Long profileId) {
+        return doActivationProfile(profileId, false);
     }
 
-    public ProfileResponse activateProfile(Long profileId){
-        CatProfile catProf = null;
+    public ProfileResponse activateProfile(Long profileId) {
+        return doActivationProfile(profileId, true);
+    }
+
+    private ProfileResponse doActivationProfile(final Long profileId, final boolean active) {
         try {
-            return new ProfileResponse(true, "Success", profileRepository.updateStatus(Constants.Y, profileId));
-        }catch(Exception e){
-            logger.error(MessageFormat.format("Error at activating CatProfile: {0}", profileId), e);
-            return new ProfileResponse(false, e.getMessage(), catProf);
+            final CatProfile catProfile = profileRepository.findByProfileId(profileId);
+            catProfile.setActive(active);
+            catProfile.setLastUpdate(new java.util.Date());
+            return new ProfileResponse(true, "Success", profileRepository.save(catProfile));
+        } catch (Exception e) {
+            logger.error(MessageFormat.format("Error at activating/deleting CatProfile: {0}", profileId), e);
+            return new ProfileResponse(false, e.getMessage(), null);
         }
     }
 }

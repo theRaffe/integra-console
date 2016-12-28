@@ -4,7 +4,7 @@
         <!-- encoders are assigned the type
      ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
         <encoder>
-            <pattern>[izzi-ldap-auth]%date{dd MMM yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>[izzi-iconsole]%date{dd MMM yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -19,11 +19,11 @@
         </rollingPolicy>
 
         <encoder>
-            <pattern>[izzi-ldap-auth]%date{dd MMM yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>[izzi-iconsole]%date{dd MMM yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <root level="info" additivity="false">
+    <root level="INFO" additivity="false">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </root>

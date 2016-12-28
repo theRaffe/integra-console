@@ -41,4 +41,13 @@ public class UserRestResponse {
         this.message = message;
         this.catUser = catUser;
     }
+
+    @Override
+    public String toString() {
+        return "UserRestResponse{" +
+                "success=" + success +
+                ", message='" + message + '\'' +
+                ", catUser=" + catUser +
+                '}';
+    }
 }

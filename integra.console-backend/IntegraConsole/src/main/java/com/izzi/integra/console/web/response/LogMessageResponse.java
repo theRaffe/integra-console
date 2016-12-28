@@ -12,6 +12,9 @@ public class LogMessageResponse {
     private String message;
     private List<LogMessage> logMessageList;
 
+    public LogMessageResponse() {
+    }
+
     public LogMessageResponse(boolean success, String message, List<LogMessage> logMessageList){
         this.success = success;
         this.message = message;
@@ -40,5 +43,14 @@ public class LogMessageResponse {
 
     public void setLogMessageList(List<LogMessage> logMessageList) {
         this.logMessageList = logMessageList;
+    }
+
+    @Override
+    public String toString() {
+        return "LogMessageResponse{" +
+                "success=" + success +
+                ", message='" + message + '\'' +
+                ", logMessageList=" + logMessageList +
+                '}';
     }
 }

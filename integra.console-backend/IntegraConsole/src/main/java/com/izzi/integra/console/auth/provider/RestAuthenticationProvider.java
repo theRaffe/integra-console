@@ -50,10 +50,7 @@ public class RestAuthenticationProvider implements AuthenticationProvider {
             final ResponseEntity<AuthenticationResponse> authenticationResponseEntity = restTemplate().postForEntity(authenticationEndpoint, authenticationRequest, AuthenticationResponse.class);
             if (authenticationResponseEntity.getStatusCode() == HttpStatus.OK) {
                 if (authenticationResponseEntity.getBody().isAuthenticated()) {
-                    final List<GrantedAuthority> grantedAuths = new ArrayList<>(2);
-                    grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
-                    grantedAuths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-                    return new UsernamePasswordAuthenticationToken(authentication.getName(), authentication.getCredentials(), grantedAuths);
+                    return new UsernamePasswordAuthenticationToken(authentication.getName(), authentication.getCredentials());
                 } else {
                     logger.error(MessageFormat.format("There is a problem with credentials, service throws: {0}", authenticationResponseEntity.getBody().getMessage()));
                     throw new BadCredentialsException(MessageFormat.format("There is a problem with credentials, service throws: {0}", authenticationResponseEntity.getBody().getMessage()));

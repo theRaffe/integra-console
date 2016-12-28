@@ -13,7 +13,7 @@ public class ProfileResponse {
     private CatProfile catProfile;
     private List<CatProfile> listProfiles;
 
-    public ProfileResponse(Boolean success, String message, CatProfile catProfile){
+    public ProfileResponse(boolean success, String message, CatProfile catProfile){
         this.success = success;
         this.message = message;
         this.catProfile = catProfile;

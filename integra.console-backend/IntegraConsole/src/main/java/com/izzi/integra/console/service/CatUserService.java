@@ -4,7 +4,7 @@ import com.izzi.integra.console.dao.entity.CatProfile;
 import com.izzi.integra.console.dao.entity.CatUser;
 import com.izzi.integra.console.dao.repository.CatProfileRepository;
 import com.izzi.integra.console.dao.repository.CatUserRepository;
-import com.izzi.integra.console.util.Constants;
+import com.izzi.integra.console.service.validation.ResultValidation;
 import com.izzi.integra.console.web.request.UserRestRequest;
 import com.izzi.integra.console.web.response.UserRestResponse;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
+
+import static com.izzi.integra.console.service.validation.UserServiceValidator.validateUserUpdate;
 
 /**
  * Created by Rafael on 15/11/2016.
@@ -37,48 +39,61 @@ public class CatUserService {
         }
     }
 
-    public  UserRestResponse saveUser(UserRestRequest user){
-        CatProfile profile = profileRepository.findByProfileName(user.getProfileName());
+    public UserRestResponse saveUser(final UserRestRequest user) {
         try {
-            return new  UserRestResponse(true, "Success",
+            final CatProfile profile = profileRepository.findByProfileName(user.getProfileName());
+            return new UserRestResponse(true, "Success",
                     userRepository.save(new CatUser(user.getUsername(),
-                    user.getCreationUser(),
-                    new java.util.Date(),
-                    new java.util.Date(),
-                    profile)));
-        }catch(final Exception e){
+                            user.getCreationUser(),
+                            new java.util.Date(),
+                            profile)));
+        } catch (final Exception e) {
             logger.error(MessageFormat.format("Error at persisting CatUser: {0}", ReflectionToStringBuilder.toString(user)), e);
             return new UserRestResponse(false, e.getMessage(), null);
         }
     }
 
-    public UserRestResponse updateUser(UserRestRequest user){
-        CatProfile profile = profileRepository.findByProfileName(user.getProfileName());
+    public UserRestResponse updateUser(final UserRestRequest user) {
         try {
+            final CatProfile profile = profileRepository.findByProfileName(user.getProfileName());
+            final CatUser catUser = userRepository.findByUsername(user.getUsername());
+
+            final ResultValidation resultValidation = validateUserUpdate(catUser, profile);
+            if (!resultValidation.isSuccess()) {
+                return new UserRestResponse(false,
+                        resultValidation.getMessage(),
+                        null);
+            }
+
+            catUser.setProfile(profile);
+            catUser.setLastUpdate(new java.util.Date());
             return new UserRestResponse(true,
                     "Success",
-                    userRepository.updateById(user.getUsername(), profile.getProfileId(), user.getUserId()));
-        }catch(Exception e){
+                    userRepository.save(catUser));
+        } catch (final Exception e) {
             logger.error(MessageFormat.format("Error at persisting CatUser: {0}", ReflectionToStringBuilder.toString(user)), e);
             return new UserRestResponse(false, e.getMessage(), null);
         }
     }
 
-    public UserRestResponse deleteUser(Long userId){
+    public UserRestResponse deleteUser(final Long userId) {
+        return doActivationUser(userId, false);
+    }
+
+    public UserRestResponse activateUser(final Long userId) {
+        return doActivationUser(userId, true);
+    }
+
+    private UserRestResponse doActivationUser(final Long userId, final boolean active) {
         try {
-            return new UserRestResponse(true, "Success", userRepository.updateStatus(Constants.N, userId));
-        }catch(Exception e){
-            logger.error(MessageFormat.format("Error at deleting CatUser: {0}", userId), e);
+            final CatUser catUser = userRepository.findById(userId);
+            catUser.setActive(active);
+            catUser.setLastUpdate(new java.util.Date());
+            return new UserRestResponse(true, "Success", userRepository.save(catUser));
+        } catch (Exception e) {
+            logger.error(MessageFormat.format("Error at activating/deleting CatUser: {0}", userId), e);
             return new UserRestResponse(false, e.getMessage(), null);
         }
     }
 
-    public UserRestResponse activateUser(Long userId){
-        try {
-            return new UserRestResponse(true, "Success", userRepository.updateStatus(Constants.Y, userId));
-        }catch(Exception e){
-            logger.error(MessageFormat.format("Error at activating CatUser: {0}", userId), e);
-            return new UserRestResponse(false, e.getMessage(), null);
-        }
-    }
 }
