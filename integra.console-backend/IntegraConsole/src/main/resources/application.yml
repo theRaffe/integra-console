@@ -8,6 +8,13 @@ spring:
     serialization:
       INDENT_OUTPUT: true
 
+  logging:
+    level:
+      org.springframework:
+          web: WARN
+          security: WARN
+      org.hibernate: ERROR
+
 route:
     authentication:
       path: auth

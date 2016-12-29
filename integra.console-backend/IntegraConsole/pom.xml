@@ -77,12 +77,43 @@
             <artifactId>spring-hateoas</artifactId>
             <version>0.20.0.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>com.mysema.querydsl</groupId>
+            <artifactId>querydsl-core</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mysema.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mysema.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+            <version>4.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <!-- Build the front end -->
+            <!-- Build the front end -->
+            <!--plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.4.0</version>
@@ -102,9 +133,9 @@
                     </arguments>
                     <workingDirectory>../../integra.console-frontend/</workingDirectory>
                 </configuration>
-            </plugin>
-            <plugin>
-                <!-- Copy the front end into the static folder for JARs-->
+            </plugin-->
+            <!-- Copy the front end into the static folder for JARs-->
+            <!--plugin>                
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.7</version>
                 <executions>
@@ -125,7 +156,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

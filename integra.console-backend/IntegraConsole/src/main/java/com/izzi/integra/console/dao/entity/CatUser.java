@@ -1,5 +1,7 @@
 package com.izzi.integra.console.dao.entity;
 
+import com.izzi.integra.console.dao.entity.converter.ActiveConverter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -21,11 +23,6 @@ public class CatUser {
     @NotNull
     private String username;
 
-    /*@Column(name = "PROFILE_ID")
-    @NotNull
-    private Long profileId;
-    */
-
     @Column(name = "CREATION_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
@@ -44,6 +41,21 @@ public class CatUser {
     @JoinColumn(name = "PROFILE_ID")
     private CatProfile profile;
 
+    @Column(name = "ACTIVE")
+    @Convert(converter = ActiveConverter.class)
+    private Boolean active;
+
+    public CatUser(){}
+    
+    public CatUser(String username, String creationUser, Date creationDate, CatProfile profile){
+        this.username = username;
+        this.creationUser = creationUser;
+        this.creationDate = creationDate;
+        this.lastUpdate = creationDate;
+        this.profile = profile;
+        this.active = true;
+    }
+
     public Long getId() {
         return id;
     }
@@ -59,15 +71,6 @@ public class CatUser {
     public void setUsername(String username) {
         this.username = username;
     }
-
-    /*public Long getProfileId() {
-        return profileId;
-    }
-
-    public void setProfileId(Long profileId) {
-        this.profileId = profileId;
-    }
-    */
 
     public Date getCreationDate() {
         return creationDate;
@@ -99,5 +102,13 @@ public class CatUser {
 
     public void setProfile(CatProfile profile) {
         this.profile = profile;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

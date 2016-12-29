@@ -1,5 +1,7 @@
 package com.izzi.integra.console.dao.entity;
 
+import com.izzi.integra.console.dao.entity.converter.ActiveConverter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -34,6 +36,20 @@ public class CatProfile {
     @Column(name = "CREATION_USER", length = 50)
     @NotNull
     private String creationUser;
+
+    @Column(name = "ACTIVE")
+    @Convert(converter = ActiveConverter.class)
+    private Boolean active;
+
+    public CatProfile(){}
+    
+    public CatProfile(String profileName, String creationUser, Date creationDate){
+        this.profileName = profileName;
+        this.creationUser = creationUser;
+        this.creationDate = creationDate;
+        this.lastUpdate = creationDate;
+        this.active = true;
+    }
 
     public Long getProfileId() {
         return profileId;
@@ -73,5 +89,13 @@ public class CatProfile {
 
     public void setCreationUser(String creationUser) {
         this.creationUser = creationUser;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }
