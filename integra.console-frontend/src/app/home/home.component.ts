@@ -9,24 +9,14 @@ import {PanelMenuModule,MenuItem} from 'primeng/primeng';
     templateUrl: 'home.component.html',
     styleUrls: ['home.component.css'],
     animations: [
-    /*trigger('slideInOut', [
-      state('in', style({
-        transform: 'translate3d(0, 0, 0)'
-      })),
-      state('out', style({
-        transform: 'translate3d(100%, 0, 0)'
-      })),
-      transition('in => out', animate('400ms ease-in-out')),
-      transition('out => in', animate('400ms ease-in-out'))
-    ]),
-    */
-
     trigger('slideInOut', [
       state('in', style({
-        width: "250px"
+        width: "250px",
+        opacity: '1'
       })),
       state('out', style({
-        width: "0"
+        width: "0",
+        opacity: '0'
       })),
       transition('in => out', animate('400ms ease-in-out')),
       transition('out => in', animate('400ms ease-in-out'))
@@ -40,7 +30,16 @@ import {PanelMenuModule,MenuItem} from 'primeng/primeng';
       })),
       transition('in => out', animate('400ms ease-in-out')),
       transition('out => in', animate('400ms ease-in-out'))
-    ])
+    ]),
+    trigger('titleTextTrigger', [
+            state('in', style({ opacity: '1' })),
+            transition('void => *', [style({ opacity: '0' }),
+                animate('100ms 300ms')
+            ]),
+            transition('* => void', [
+                animate('50ms', style({ opacity: '0' }))
+            ])
+        ]),
   ]
 })
  
