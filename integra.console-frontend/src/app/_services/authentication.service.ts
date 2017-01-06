@@ -10,24 +10,22 @@ import 'rxjs/add/operator/catch';
 export class AuthenticationService {
     public token: string;
 
-    
-
-    constructor( private http: Http) {
+    constructor(private http: Http) {
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.token = currentUser && currentUser.token;
     }
 
-    login(username, password){
+    login(username, password) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this.http
-        .post(`${app_context}/auth`, JSON.stringify({"username": username, "password": password}), options) // /api/authenticate
+            .post(`${app_context}/auth`, JSON.stringify({ "username": username, "password": password }), options) // /api/authenticate
             .map((response: Response) => {
                 let token = response.json() && response.json().token;
                 if (token) {
                     this.token = token;
 
-                    localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token}));
+                    localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
                     return true;
                 } else {
                     return false;
@@ -41,7 +39,7 @@ export class AuthenticationService {
         localStorage.removeItem('currentUser');
     }
 
-    private handleError (error: Response | any) {
+    private handleError(error: Response | any) {
         // In a real world app, we might use a remote logging infrastructure
         let errMsg: string;
         if (error instanceof Response) {

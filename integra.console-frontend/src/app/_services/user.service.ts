@@ -11,30 +11,30 @@ import { app_context } from '../shared/global';
 @Injectable()
 export class UserService {
     private token: string;
- 
+
     constructor(
         private http: Http,
         private authenticationService: AuthenticationService,
         private authHttp: AuthHttp) {
     }
- 
+
     getUsers(): Observable<User[]> {
         // add authorization header with jwt token
         let headers = new Headers({ 'Authorization': 'Bearer ' + this.authenticationService.token });
         let options = new RequestOptions({ headers: headers });
- 
+
         // get users from api
         return this.http.get('/api/users', options)
             .map((response: Response) => response.json());
     }
 
-    getUserInformation(): Observable<UserAdditionalInfo>{
+    getUserInformation(): Observable<UserAdditionalInfo> {
         let jwtHelper: JwtHelper = new JwtHelper();
         var token = this.authenticationService.token || null;
-        if (token){
+        if (token) {
             console.log('decodeToken=' + JSON.stringify(jwtHelper.decodeToken(token)));
         } else {
-            console.log('token is null!!');
+            console.error('token is null!!');
         }
 
         return this.authHttp.get(`${app_context}/getUserInformation`)
@@ -42,7 +42,7 @@ export class UserService {
             .catch(this.handleError);
     }
 
-    private handleError (error: Response | any) {
+    private handleError(error: Response | any) {
         // In a real world app, we might use a remote logging infrastructure
         let errMsg: string;
         if (error instanceof Response) {
@@ -54,6 +54,14 @@ export class UserService {
         }
         console.error(errMsg);
         return Observable.throw(errMsg);
+    }
+
+    getUserFullName(){
+        let jwtHelper: JwtHelper = new JwtHelper();
+        var token = this.authenticationService.token || null;
+        var jsonToken = jwtHelper.decodeToken(token);
+
+        return jsonToken.sub || '';
     }
 
 }

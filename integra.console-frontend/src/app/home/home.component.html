@@ -2,21 +2,35 @@
 
     <div id="main" [@contentInOut]="menuState">
         <app-menu [@slideInOut]="menuState" [menuItems]="items"></app-menu>
-        <div class="title">
-            <button #btnMenu type="button" pButton icon="fa fa-list" class="btnMenu"  (click)="toggleMenu()"></button>
+        <div class="title-bar">
+            <button #btnMenu type="button" type="text" pButton icon="fa fa-list" class="title-btnMenu" (click)="toggleMenu()"></button>
+            <div class="title-search">
+                <div style="width: 25%;">
+                    <input name="searchText" placeholder='Buscar...' type='text' class="title-input-search">
+                    <button pButton type="button" icon="fa-search" type="text" class="title-btn-search"></button>
+                </div>
+                <div>
+                    <button pButton type="button" icon="iconsole-icon-tool" class="title-icon-button"></button>
+                </div>
+                <div>
+                    <button pButton type="button" icon="iconsole-icon-profile" class="title-icon-button"></button>
+                </div>
+                <div>
+                    {{userFullName}}
+                </div>
+
+            </div>
         </div>
         <div class="row">
-            <nav>
+            <!--nav>
                 <a [routerLink]="['./test']" routerLinkActive="active">test</a>
-            </nav>
+            </nav-->
             <div style="color: green; margin-top: 1rem; heigth: 500px">Outlet:</div>
             <div style="border: 2px solid green; padding: 1rem;">
-            <router-outlet></router-outlet>
+                <router-outlet></router-outlet>
             </div>
             <p><a [routerLink]="['/login']" routerLinkActive="active">Logout</a></p>
         </div>
     </div>
 
 </div>
-
-
