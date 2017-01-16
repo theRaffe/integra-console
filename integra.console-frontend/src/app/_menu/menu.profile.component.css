@@ -1,0 +1,60 @@
+.profile-menu {
+    font-size: .75em;
+    width: 250px;
+}
+
+.profile-menu .header {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+}
+
+.profile-menu .header .rows {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profile-menu .header .rows div {
+    height: 50%;
+    margin-top: 5px;
+}
+
+.profile-menu .fullUsername {
+    font-weight: bold;
+}
+
+.profile-menu .username {
+    font-size: .65em;
+}
+
+:host /deep/ .ic-setting-dark {
+    width: 30px;
+    height: 30px;
+    background: url('../../assets/icons/custom/menu-profile/gear-config_dark.png') no-repeat top left !important;
+}
+
+:host /deep/ .ic-logout-dark {
+    width: 30px;
+    height: 30px;
+    background: url('../../assets/icons/custom/menu-profile/logout_dark.png') no-repeat top left !important;
+}
+
+:host /deep/ .ui-menuitem {
+    height: 35px; 
+}
+
+:host /deep/ .ui-menuitem-icon {
+    margin-left: -16px;
+    margin-top: -16px !important;    
+}
+
+:host /deep/ .ui-panelmenu {
+    width: 250px !important;
+}
+
+:host /deep/ .ui-panelmenu-header {
+    border-bottom-style: none;
+    border-left-style: none;
+    border-right-style: none;
+}

@@ -1,0 +1,18 @@
+<div class="title-search">
+    <div style="width: 25%;">
+        <input name="searchText" placeholder='Buscar...' type='text' class="title-input-search">
+        <button pButton type="button" icon="fa-search" type="text" class="title-btn-search"></button>
+    </div>
+    <div>
+        <button pButton type="button" icon="iconsole-icon-tool" class="title-icon-button"></button>
+    </div>
+    <div>
+        <button pButton type="button" icon="iconsole-icon-profile" class="title-icon-button" (click)="op.toggle($event)"></button>
+        <p-overlayPanel #op>
+            <app-menu-profile [username]="userFullName" [profileName]="profileDescription"></app-menu-profile>
+        </p-overlayPanel>
+    </div>
+    <div>
+        {{userFullName}}
+    </div>
+</div>

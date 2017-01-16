@@ -4,8 +4,8 @@ import { IConsoleRoutingModule } from './iconsole.routing';
 import { TestDemo, TestDemo2 } from '../test/index';
 import { NoContentComponent } from '../no-content/index';
 
-import { HomeComponent } from './index';
-import { MenuComponent } from '../_menu/menu.component';
+import { HomeComponent, TitleSearchComponent } from './index';
+import { MenuComponent, MenuProfileComponent } from '../_menu/index';
 import { UserService }  from '../_services/index';
 
 import { PanelMenuModule } from 'primeng/primeng';
@@ -30,7 +30,9 @@ import { AuthenticationService }  from '../_services/index';
         TestDemo,
         MenuComponent,
         TestDemo2,
-        NoContentComponent
+        NoContentComponent,
+        MenuProfileComponent,
+        TitleSearchComponent,
     ],
     providers: [
         UserService,

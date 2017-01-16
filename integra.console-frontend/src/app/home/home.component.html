@@ -4,22 +4,7 @@
         <app-menu [@slideInOut]="menuState" [menuItems]="items"></app-menu>
         <div class="title-bar">
             <button #btnMenu type="button" type="text" pButton icon="fa fa-list" class="title-btnMenu" (click)="toggleMenu()"></button>
-            <div class="title-search">
-                <div style="width: 25%;">
-                    <input name="searchText" placeholder='Buscar...' type='text' class="title-input-search">
-                    <button pButton type="button" icon="fa-search" type="text" class="title-btn-search"></button>
-                </div>
-                <div>
-                    <button pButton type="button" icon="iconsole-icon-tool" class="title-icon-button"></button>
-                </div>
-                <div>
-                    <button pButton type="button" icon="iconsole-icon-profile" class="title-icon-button"></button>
-                </div>
-                <div>
-                    {{userFullName}}
-                </div>
-
-            </div>
+            <title-search-component [userFullName]="userFullName" [profileDescription]="profileName" ></title-search-component>
         </div>
         <div class="row">
             <!--nav>

@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
   users: User[] = [];
   private items: MenuItem[];
   private userFullName: string;
-
+  private profileName: string;
 
   constructor(private userService: UserService) { }
 
@@ -61,6 +61,7 @@ export class HomeComponent implements OnInit {
       data => {
         //console.log(data.menuItems)
         this.items = data.menuItems;
+        this.profileName = data.profileName;
 
       },
       err => console.error(err),
