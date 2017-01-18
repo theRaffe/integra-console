@@ -8,7 +8,7 @@
 .title-search div {
     display: flex;
     justify-content: flex-end;
-    border:1px red transparent;
+    border:1px transparent;
     padding:5px;
     height: 100%
 }
@@ -34,6 +34,7 @@
 }
 
 :host /deep/ .title-btn-search .ui-button-icon-left {
+    font-size: 1.5em;
     margin-left: -14px;
     margin-top: -12px;
 }

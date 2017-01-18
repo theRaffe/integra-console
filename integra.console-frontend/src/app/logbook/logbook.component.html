@@ -1,0 +1,58 @@
+<div class="logbook-container">
+    <div class="header-bar">
+        <div class="filter-div">
+            <div class="filter-label">
+                <span>LogId</span>
+            </div>
+            <div>
+                <input type="text" pInputText [(ngModel)]="logId" placeholder='LogId' class="filter" />
+            </div>
+        </div>
+
+        <div class="filter-div">
+            <div class="filter-label">
+                <span>Negocio Id</span>
+            </div>
+            <div>
+                <input type="text" pInputText [(ngModel)]="businessId" placeholder='Id Negocio' class="filter" />
+            </div>
+        </div>
+        <div class="filter-div">
+            <div class="filter-label">
+                <span>Servicios</span>
+            </div>
+            <div>
+                <p-dropdown [options]="serviceList" [(ngModel)]="selectedService" [filter]="true" class="filter-drop"></p-dropdown>
+            </div>
+        </div>
+        <div class="filter-div">
+            <div class="filter-label">
+                <span>Fecha Desde:</span>
+            </div>
+            <div>
+                <p-calendar [(ngModel)]="dateFrom" class="filter-date"></p-calendar>
+            </div>
+        </div>
+        <div class="filter-div">
+            <div class="filter-label">
+                <span>Fecha Hasta:</span>
+            </div>
+            <div>
+                <p-calendar [(ngModel)]="dateTo" class="filter-date"></p-calendar>
+            </div>
+        </div>
+        <div class="filter-div">
+            <div class="filter-label">
+                <span>Tipo</span>
+            </div>
+            <div>
+                <p-dropdown [options]="logTypeList" [(ngModel)]="selectedLogType" [filter]="true" class="filter-drop"></p-dropdown>
+            </div>
+        </div>
+        <div class="filter-div">
+            <div style="margin-top: 15px">
+                <button pButton type="button" label="Buscar" (click)="onSearch()" class="search-btn"></button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+.filter {
+    font-size: .65em;
+    border: 2px solid #BFBFBF;
+    border-radius: 4.5px;
+}
+
+.filter:focus {
+    padding: 3px 0px 3px 3px;
+    border: 2px solid #BFBFBF;
+}
+
+.filter-label span{
+    font-size: .7em;
+    color: #3B3737
+}
+
+:host /deep/ .filter-drop .ui-dropdown {
+    /*margin-top: 5.5px;*/
+    border: 2px solid #BFBFBF;
+    font-size: .65em!important;
+}
+
+:host /deep/ .filter-date .ui-calendar {
+    /*margin-top: 5.5px;*/
+    border: 2px solid #BFBFBF;
+    font-size: .65em!important;
+    border-radius: 4.5px;
+}
+
+.search-btn {
+    padding: .2em;
+    color: #fff!important;
+    cursor: pointer;
+    font-size: .75em!important;
+    border-radius: 4.5px!important;
+    background-color: #3B3838!important;
+}

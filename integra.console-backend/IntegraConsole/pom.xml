@@ -4,9 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <organization>
+        <name>Izzi Developer Monterrey Team</name>
+    </organization>
+
     <groupId>com.izzi.integra.console</groupId>
     <artifactId>izzi-integra-console</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <packaging>war</packaging>
 
     <parent>
@@ -113,7 +117,7 @@
     <build>
         <plugins>
             <!-- Build the front end -->
-            <!--plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.4.0</version>
@@ -133,9 +137,9 @@
                     </arguments>
                     <workingDirectory>../../integra.console-frontend/</workingDirectory>
                 </configuration>
-            </plugin-->
+            </plugin>
             <!-- Copy the front end into the static folder for JARs-->
-            <!--plugin>                
+            <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.7</version>
                 <executions>
@@ -156,7 +160,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin-->
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -170,6 +174,10 @@
                         <manifest>
                             <addDefaultImplementationEntries>false</addDefaultImplementationEntries>
                         </manifest>
+                        <manifestEntries>
+                            <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                            <Weblogic-Application-Version>${project.version}</Weblogic-Application-Version>
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>

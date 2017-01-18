@@ -1,0 +1,17 @@
+.logbook-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.logbook-container .header-bar {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid;
+    flex-wrap: wrap;
+}
+
+.logbook-container .header-bar .filter-div {
+    display: flex;
+    flex-direction: column;
+    padding:5px;
+}

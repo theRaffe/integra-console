@@ -26,7 +26,8 @@
     border: none !important;
 }
 
-:host /deep/ .title-btnMenu .ui-button-icon-left{
+:host /deep/ .title-btnMenu .ui-button-icon-left {
+    font-size: 1.5em;
     margin-left: -14px;
     margin-top: -10px;
 }
