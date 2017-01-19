@@ -11,7 +11,8 @@
 
 .filter-label span{
     font-size: .7em;
-    color: #3B3737
+    color: #3B3737;
+    font-weight: bold;
 }
 
 :host /deep/ .filter-drop .ui-dropdown {
@@ -34,4 +35,15 @@
     font-size: .75em!important;
     border-radius: 4.5px!important;
     background-color: #3B3838!important;
+}
+
+.iconsole-dp {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.iconsole-dp div {
+    font-size: .75em;
+    margin-top: 4px;
 }

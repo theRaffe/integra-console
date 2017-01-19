@@ -9,7 +9,7 @@ import { NoContentComponent } from '../no-content/index';
 import { HomeComponent, TitleSearchComponent } from './index';
 import { MenuComponent, MenuProfileComponent } from '../_menu/index';
 import { LogBookComponent } from '../logbook/index';
-import { UserService, DropDownService } from '../_services/index';
+import { UserService, DropDownService, LogBookService } from '../_services/index';
 
 import { PanelMenuModule } from 'primeng/primeng';
 import { SlideMenuModule } from 'primeng/primeng';
@@ -18,7 +18,7 @@ import { OverlayPanelModule } from 'primeng/primeng';
 import { GrowlModule } from 'primeng/primeng';
 import { InputTextModule } from 'primeng/primeng';
 import { DropdownModule } from 'primeng/primeng';
-import {CalendarModule} from 'primeng/primeng';
+import { CalendarModule } from 'primeng/primeng';
 
 
 import { provideAuth } from 'angular2-jwt';
@@ -49,6 +49,7 @@ import { AuthenticationService } from '../_services/index';
         UserService,
         AuthenticationService,
         DropDownService,
+        LogBookService,
         provideAuth({
             headerName: 'Authorization',
             headerPrefix: '',

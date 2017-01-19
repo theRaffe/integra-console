@@ -1,6 +1,7 @@
 import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { app_context } from '../shared/global';
+import { FakeLogMessage, FakeServiceDropdown } from './index';
  
 export let fakeBackendProvider = {
     // use fake backend in place of Http service for backend-less development
@@ -58,8 +59,8 @@ export let fakeBackendProvider = {
                                         "label": "pantalla-1",
                                         "items": [
                                             {
-                                                "label": "pantalla-1-1",
-                                                "routerLink": ["home/test"]
+                                                "label": "Bitacora",
+                                                "routerLink": ["home/logbook"]
                                             }
                                         ]
                                     },
@@ -86,6 +87,17 @@ export let fakeBackendProvider = {
                             } })
 
                         ));
+                }
+
+                if (connection.request.url.endsWith(`${app_context}/getServiceDropdown`) && connection.request.method === RequestMethod.Get){
+                    let fakeServiceDropdown:FakeServiceDropdown = new FakeServiceDropdown();
+                    connection.mockRespond( fakeServiceDropdown.getServiceDropdown());
+                }
+
+                if (connection.request.url.endsWith(`${app_context}/getLogMessages`) && connection.request.method === RequestMethod.Post) {
+                    let params = JSON.parse(connection.request.getBody());
+                    let fakeLogMessage: FakeLogMessage = new FakeLogMessage();
+                    connection.mockRespond( fakeLogMessage.searchLogMessage(params));
                 }
  
             }, 500);
