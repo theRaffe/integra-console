@@ -12,6 +12,7 @@ export class FakeLogMessage {
         result.logMessageList = [
             {
                 logId: 1,
+                logTypeId: 2,
                 processId: "processId-1",
                 businessMsgId: "businessMsgId-1",
                 processName: "processName-1",

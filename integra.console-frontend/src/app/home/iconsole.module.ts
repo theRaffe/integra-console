@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { BrowserModule } from '@angular/platform-browser';
 
 import { IConsoleRoutingModule } from './iconsole.routing';
 import { TestDemo, TestDemo2 } from '../test/index';
@@ -19,6 +19,8 @@ import { GrowlModule } from 'primeng/primeng';
 import { InputTextModule } from 'primeng/primeng';
 import { DropdownModule } from 'primeng/primeng';
 import { CalendarModule } from 'primeng/primeng';
+import { DataTableModule, SharedModule } from 'primeng/primeng';
+
 
 
 import { provideAuth } from 'angular2-jwt';
@@ -27,13 +29,16 @@ import { AuthenticationService } from '../_services/index';
 @NgModule({
     imports: [
         IConsoleRoutingModule,
+        BrowserModule,
         PanelMenuModule,
         OverlayPanelModule,
         SlideMenuModule,
         ButtonModule,
         FormsModule,
         DropdownModule,
-        CalendarModule
+        CalendarModule,
+        DataTableModule,
+        SharedModule
     ],
     declarations: [
         HomeComponent,

@@ -44,6 +44,7 @@ export class DropDownService {
 
     public getLogType(): SelectItem[] {
         return [
+            { label: "TODOS", value: { id: null, code: null } },
             { label: 'ERROR', value: { id: 1, code: 'ERROR' } },
             { label: 'WARN', value: { id: 2, code: 'WARN' } },
             { label: 'INFO', value: { id: 3, code: 'INFO' } },

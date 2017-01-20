@@ -62,4 +62,14 @@
             </div>
         </div>
     </div>
+    <div class="content">
+        <p-dataTable [value]="logMessageResponse.logMessageList" class="search-grid">
+            <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+            <p-column field="creationDate" header="Fecha">
+                <template let-col let-log="rowData" pTemplate="body">
+                    <span>{{log[col.field] | date: formatDate}}</span>
+                </template>
+            </p-column>
+        </p-dataTable>
+    </div>
 </div>
